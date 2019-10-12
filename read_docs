@@ -1,0 +1,52 @@
+import pynput
+import webbrowser
+from pynput.keyboard import Key, Controller
+from pynput.mouse import Button, Controller as MouseController
+import time
+import subprocess
+import os
+import signal
+
+keyboard = Controller()
+mouse = MouseController()
+
+
+def download(url):
+	webbrowser.open(url)
+	#pro = subprocess.Popen("start chrome --new-window " + url ,shell = True)
+
+	time.sleep(5)
+	print ("Current position: " + str(mouse.position))
+	mouse.click(Button.right, 1)
+	time.sleep(5)
+	mouse.move(50, 105)
+	#with keyboard.pressed(Key.ctrl):
+	#	keyboard.press('s')
+	time.sleep(5)
+	mouse.click(Button.left, 1)
+	time.sleep(5)
+	keyboard.press(Key.enter)
+
+	#time.sleep(5)
+
+	#pro.kill()
+
+	#time.sleep(5)
+	#os.killpg(os.getpgid(pro.pid), signal.SIGTERM)
+	#os.kill(self.p.pid, signal.CTRL_C_EVENT)
+
+
+for url in ["https://pypi.org/project/pynput/", "https://yandex.ru/", "https://vk.com/", "https://google.com/"]:
+	download(url)
+
+url = "https://pypi.org/project/pynput/"
+
+#download(url)
+
+"""
+process = Popen(args=shlex.split(command), shell=shel
+l, cwd=cwd, stdout=PIPE, stderr=PIPE,creationflags=subprocess.CREATE_NEW_PROCESS_GROUP)
+/*...*/
+process .send_signal(signal.CTRL_BREAK_EVENT)
+process .kill()
+"""
